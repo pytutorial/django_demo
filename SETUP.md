@@ -1,0 +1,49 @@
+-- Install environment
+sudo apt-get update
+sudo apt-get install python3 python3-pip python3-venv git
+pip3 install django uwsgi
+
+-- Edit .profile : 
+Add a line at the end: "export PATH=$PATH:~/.local/bin"
+
+-- Update profile
+source .profile
+
+-- Clone project from git
+git clone https://github.com/pytutorial/django_demo.git
+cd django_demo
+python3 -m venv env
+source env/bin/activate
+pip3 install -r requirements.txt
+python3 manage.py collectstatic
+
+--- Create mysite.ini
+[uwsgi]
+home=/home/<user>/django_demo/env
+chdir=/home/<user>/django_demo
+check-static=/home/<user>/django_demo
+wsgi-file=/home/<user>/django_demo/django_demo/wsgi.py
+processes=4
+http=:8000
+
+-- Test uwsgi
+uwsgi mysite.ini
+
+--Create autostart service
+cd /etc/systemd/system
+
+--Create new file "mysite.service"
+[Unit]
+Description=mysite
+
+[Service]
+ExecStart=/home/dttvn0011/.local/bin/uwsgi /home/dttvn0011/django_demo/mysite.ini
+
+[Install]
+WantedBy=multi-user.target
+
+
+-- Enable service
+sudo systemctl enable mysite.service
+sudo service mysite start
+
