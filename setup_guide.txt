@@ -37,7 +37,7 @@ cd /etc/systemd/system
 Description=mysite
 
 [Service]
-ExecStart=/home/dttvn0011/.local/bin/uwsgi /home/dttvn0011/django_demo/mysite.ini
+ExecStart=/home/<user>/.local/bin/uwsgi /home/<user>/django_demo/mysite.ini
 
 [Install]
 WantedBy=multi-user.target
