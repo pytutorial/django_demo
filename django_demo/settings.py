@@ -25,13 +25,13 @@ SECRET_KEY = 'id(#jyb6$5qns9s$a^hzjn8iysonu5+83)q^v=zrm1ho7s09i8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']                                           ############### New
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'app',
+    'app',                                                      ############### New
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -120,5 +120,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-import os
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+import os                                               ############### New
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')          ############### New
